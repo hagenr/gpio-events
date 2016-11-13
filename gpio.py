@@ -24,5 +24,5 @@ class GPIO:
         self.BOTH = self.gpio.BOTH
         self.add_event_detect = self.gpio.add_event_detect
         self.gpio.setmode(self.gpio.BOARD)
-        self.cleanup = self.gpio.cleanup()
+        self.cleanup = self.gpio.cleanup
         
