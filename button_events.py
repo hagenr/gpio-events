@@ -15,7 +15,7 @@ import time
 
 class Button:
 
-    def __init__(self, btn_pin, callback_down=None, callback_up=None, bouncetime=25):
+    def __init__(self, btn_pin, callback_down=None, callback_up=None, bouncetime=25, gpioObject = None):
         self.btn_pin = btn_pin
         
         self.bouncetime = bouncetime
@@ -29,7 +29,11 @@ class Button:
 
         self.interrupt_lock = threading.Lock()
         
-        self.gpio = gpio.GPIO()
+        # gpio wrapper class for better portability
+        if gpioObject <> None:
+            self.gpio = gpioObject
+        else:
+            self.gpio = gpio.GPIO()
 
         self.gpio.setup(self.btn_pin, self.gpio.IN, self.gpio.PUD_UP)
  

@@ -30,7 +30,7 @@ import threading
 
 class RotaryEncoder:
 
-    def __init__(self, a_pin, b_pin, callback=None):
+    def __init__(self, a_pin, b_pin, callback=None, gpioObject=None):
         # set up
         self.a_pin = a_pin
         self.b_pin = b_pin
@@ -45,7 +45,10 @@ class RotaryEncoder:
         self.interrupt_lock = threading.Lock()
         
         # gpio wrapper class for better portability
-        self.gpio = gpio.GPIO()
+        if gpioObject <> None:
+            self.gpio = gpioObject
+        else:
+            self.gpio = gpio.GPIO()
 
         self.gpio.setup(self.a_pin, self.gpio.IN, self.gpio.PUD_UP)
         self.gpio.setup(self.b_pin, self.gpio.IN, self.gpio.PUD_UP)
