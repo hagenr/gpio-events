@@ -78,7 +78,6 @@ class Program:
     def loop(self):
         while True:
             print "TempMax: %d" % self.settings.get_tempMax()
-            self.IOWorker.switch18()
             time.sleep(self.sleeptime)
 
     def destroy(self):
